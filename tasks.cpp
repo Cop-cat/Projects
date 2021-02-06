@@ -6,23 +6,24 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-void sort(std::vector<int> &nums){
-    for(int i = 1;i < nums.size();i++){
-        int x = nums[i];
+void output_sorted(std::vector<int> &nums){
+    std::vector<int> sorted_copie = nums;
+    for(int i = 1;i < sorted_copie.size();i++){
+        int x = sorted_copie[i];
         int j = i;
-        while(j > 0 && abs(nums[j-1]) > abs(x)){
-            nums[j] = nums[j-1];
+        while(abs(sorted_copie[j-1]) > abs(x) && j > 0){
+            sorted_copie[j] = sorted_copie[j-1];
             j--;
         }
-        nums[j] = x;
+        sorted_copie[j] = x;
     }
+    for(int i = 0;i < sorted_copie.size();i++)
+        cout << sorted_copie[i] << " ";
 }
 
 int main(){
     std::vector<int> nums = {-100, -50, -5, 1, 10, 15};
-    sort(nums);
-    for(int i = 0;i < nums.size();i++)
-            cout << nums[i] << " ";
+    output_sorted(nums);
     cout << endl;
     return 0;
 }
